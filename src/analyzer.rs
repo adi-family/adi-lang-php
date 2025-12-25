@@ -243,9 +243,13 @@ fn parse_php_properties(node: Node, source: &str, symbols: &mut Vec<ParsedSymbol
                 if let Some(name) = child.child_by_field_name("name") {
                     let name_text = node_text(name, source);
                     symbols.push(
-                        ParsedSymbolAbi::new(name_text, SymbolKindAbi::Property, node_location(child))
-                            .with_visibility(visibility)
-                            .with_doc_comment_opt(doc_comment.clone()),
+                        ParsedSymbolAbi::new(
+                            name_text,
+                            SymbolKindAbi::Property,
+                            node_location(child),
+                        )
+                        .with_visibility(visibility)
+                        .with_doc_comment_opt(doc_comment.clone()),
                     );
                 }
             }
@@ -263,9 +267,13 @@ fn parse_php_constants(node: Node, source: &str, symbols: &mut Vec<ParsedSymbolA
                 if let Some(name) = child.child_by_field_name("name") {
                     let name_text = node_text(name, source);
                     symbols.push(
-                        ParsedSymbolAbi::new(name_text, SymbolKindAbi::Constant, node_location(child))
-                            .with_visibility(visibility)
-                            .with_doc_comment_opt(doc_comment.clone()),
+                        ParsedSymbolAbi::new(
+                            name_text,
+                            SymbolKindAbi::Constant,
+                            node_location(child),
+                        )
+                        .with_visibility(visibility)
+                        .with_doc_comment_opt(doc_comment.clone()),
                     );
                 }
             }
@@ -389,16 +397,44 @@ fn collect_php_references(node: Node, source: &str, refs: &mut Vec<ParsedReferen
 fn is_primitive_type(name: &str) -> bool {
     matches!(
         name,
-        "int" | "float" | "string" | "bool" | "array" | "object" | "callable" | "iterable"
-            | "void" | "null" | "mixed" | "never" | "true" | "false" | "self" | "static" | "parent"
+        "int"
+            | "float"
+            | "string"
+            | "bool"
+            | "array"
+            | "object"
+            | "callable"
+            | "iterable"
+            | "void"
+            | "null"
+            | "mixed"
+            | "never"
+            | "true"
+            | "false"
+            | "self"
+            | "static"
+            | "parent"
     )
 }
 
 fn is_builtin_function(name: &str) -> bool {
     matches!(
         name,
-        "echo" | "print" | "var_dump" | "print_r" | "isset" | "empty" | "unset" | "die" | "exit"
-            | "array" | "list" | "include" | "include_once" | "require" | "require_once"
+        "echo"
+            | "print"
+            | "var_dump"
+            | "print_r"
+            | "isset"
+            | "empty"
+            | "unset"
+            | "die"
+            | "exit"
+            | "array"
+            | "list"
+            | "include"
+            | "include_once"
+            | "require"
+            | "require_once"
     )
 }
 
