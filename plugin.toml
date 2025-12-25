@@ -1,0 +1,12 @@
+[plugin]
+id = "adi.lang.php"
+name = "PHP Language Support"
+version = "0.1.0"
+api_version = 2
+
+[language]
+id = "php"
+extensions = ["php", "phtml", "php3", "php4", "php5", "phps"]
+
+[provides]
+services = ["adi.indexer.lang.php"]
